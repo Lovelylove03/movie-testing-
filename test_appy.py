@@ -6,7 +6,7 @@ from sklearn.neighbors import NearestNeighbors
 
 url = 'https://image.tmdb.org/t/p/original'
 
-link = r"C:\Users\admin-nun\Desktop\WCS_Nuno\Projets\Projet_2\Streamlit\df_ml.csv"
+
 df= pd.read_csv(link)
 st.title('Système de recommandations de films')
 st.divider()
