@@ -3,6 +3,21 @@ import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 from sklearn.metrics.pairwise import cosine_similarity
 
+# Add custom CSS for background image
+background_image_url = "'https://image.tmdb.org/t/p/original'"  # Replace with your image URL
+st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background: url({background_image_url});
+        background-size: cover;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # st.set_page_config(layout='wide')
 
 url = 'https://image.tmdb.org/t/p/original'
