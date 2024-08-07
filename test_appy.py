@@ -88,17 +88,11 @@ if submitted:
         col3.subheader (df.iloc[a[0][3]]['startYear'])
         col3.image(url + df.iloc[a[0][3]]['poster_path'],use_column_width='auto')   
 
-# List of columns to drop
-columns_to_drop = ['tconst', 'titleType', 'startYear', 'runtimeMinutes', 'averageRating', 'numVotes', 'title', 'language']
 
-# Filter out the columns that do not exist in the DataFrame
-columns_to_drop = [col for col in columns_to_drop if col in movies_df.columns]
 
-# Drop the unnecessary columns
-features = df.drop(columns=columns_to_drop).values
 
 # Calculate the cosine similarity matrix
-similarity_matrix = cosine_similarity(features, features)
+similarity_matrix = cosine_similarity(X, X)
 
 # Integrate with Streamlit
 st.write("Cosine Similarity Matrix:")
