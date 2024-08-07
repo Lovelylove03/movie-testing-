@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
+from sklearn.metrics.pairwise import cosine_similarity
 
 # st.set_page_config(layout='wide')
 
