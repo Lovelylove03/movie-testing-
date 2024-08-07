@@ -125,6 +125,9 @@ for column in df.select_dtypes(include=['object']).columns:
 
 import numpy as np
 
-chart_data = pd.DataFrame(np.random.randn(21, 16), columns=["Action", "Animation", "Biography","Comedy", "Crime", "Drama", "Family", "Fantasy" "Adventure", "Mystery", "Romance", "Sci-Fi","Science Fiction","Sport","Thriller","War","Western"])
+chart_data = pd.DataFrame(
+    np.random.randn(21, 16),
+    columns=["Action", "Animation", "Biography", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Adventure", "Mystery", "Romance", "Sci-Fi", "Science Fiction", "Sport", "Thriller", "War", "Western"]
+)
 
 st.area_chart(chart_data)
