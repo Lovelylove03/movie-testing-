@@ -10,9 +10,10 @@ link = link = "https://raw.githubusercontent.com/Lovelylove03/movie-testing-/mai
 # Rest of your code follows
 
 df= pd.read_csv(link)
-st.title('Système de recommandations de films')
+st.title('Système de recommandations de films pour cinema')
 st.divider()
-
+with st.expander('Data'):
+    st.write('**Raw data**')
 col1, col2, col3= st.columns(3)
 
 with st.sidebar:
