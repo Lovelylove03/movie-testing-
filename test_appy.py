@@ -82,13 +82,13 @@ if submitted:
         col3.subheader (df.iloc[a[0][3]]['startYear'])
         col3.image(url + df.iloc[a[0][3]]['poster_path'],use_column_width='auto')   
 # Select relevant features
-features = movies_df.drop(columns=['tconst', 'titleType', 'startYear', 'runtimeMinutes', 'averageRating', 'numVotes', 'title', 'language'])
+features = df.drop(columns=['tconst', 'titleType', 'startYear', 'runtimeMinutes', 'averageRating', 'numVotes', 'title', 'language'])
 
 # Compute cosine similarity matrix
 similarity_matrix = cosine_similarity(features, features)
 
 # Store movie titles for easy lookup
-movie_titles = movies_df['title'].tolist()
+movie_titles = ['title'].tolist()
 
 def get_recommendations(title, similarity_matrix, movie_titles, top_n=10):
     # Find the index of the movie
