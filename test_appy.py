@@ -80,3 +80,29 @@ if submitted:
         col3.subheader (df.iloc[a[0][3]]['startYear'])
         col3.image(url + df.iloc[a[0][3]]['poster_path'],use_column_width='auto')   
 
+# Compute cosine similarity matrix
+similarity_matrix = cosine_similarity(features, features)
+
+# Store movie titles for easy lookup
+movie_titles = movies_df['title'].tolist()
+
+def get_recommendations(title, similarity_matrix, movie_titles, top_n=10):
+    # Find the index of the movie
+    try:
+        idx = movie_titles.index(title)
+    except ValueError:
+        return ["Movie not found in the dataset."]
+
+    # Get similarity scores for all movies
+    sim_scores = list(enumerate(similarity_matrix[idx]))
+
+    # Sort the movies based on similarity scores
+    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+
+    # Get the indices of the top_n most similar movies
+    top_indices = [i[0] for i in sim_scores[1:top_n+1]]
+
+    # Return the titles of the top_n most similar movies
+    return [movie_titles[i] for i in top_indices]
+
+
