@@ -123,3 +123,8 @@ for column in df.select_dtypes(include=['object']).columns:
         ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         st.pyplot(fig)
 
+import numpy as np
+
+chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["Action", "Animation", "Biography","Comedy", "Crime", "Drama", "Family", "Fantasy" "Adventure", "Mystery", "Romance", "Sci-Fi","Science Fiction","Sport","Thriller","War","Western"])
+
+st.area_chart(chart_data)
