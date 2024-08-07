@@ -5,7 +5,9 @@ from sklearn.neighbors import NearestNeighbors
 # st.set_page_config(layout='wide')
 
 url = 'https://image.tmdb.org/t/p/original'
-link = https://raw.githubusercontent.com/Lovelylove03/movie-testing-/main/df_ml%20-%20df_ml.csv
+link = link = "https://raw.githubusercontent.com/Lovelylove03/movie-testing-/main/df_ml%20-%20df_ml.csv"
+# Rest of your code follows
+
 df= pd.read_csv(link)
 st.title('Système de recommandations de films')
 st.divider()
