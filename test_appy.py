@@ -12,6 +12,12 @@ link = link = "https://raw.githubusercontent.com/Lovelylove03/movie-testing-/mai
 df= pd.read_csv(link)
 st.title('Système de recommandations de films pour cinema')
 st.divider()
+# Display DataFrame for debugging
+st.write("DataFrame Head:")
+st.write(df.head())
+
+st.write("DataFrame Columns:")
+st.write(df.columns)
 with st.expander('Data'):
     st.write('**Raw data**')
 col1, col2, col3= st.columns(3)
@@ -81,32 +87,20 @@ if submitted:
         col3.header(df.iloc[a[0][3]]['primaryTitle'])
         col3.subheader (df.iloc[a[0][3]]['startYear'])
         col3.image(url + df.iloc[a[0][3]]['poster_path'],use_column_width='auto')   
-# Select relevant features
-features = df.drop(columns=['tconst', 'titleType', 'startYear', 'runtimeMinutes', 'averageRating', 'numVotes', 'title', 'language'])
 
-# Compute cosine similarity matrix
+# List of columns to drop
+columns_to_drop = ['tconst', 'titleType', 'startYear', 'runtimeMinutes', 'averageRating', 'numVotes', 'title', 'language']
+
+# Filter out the columns that do not exist in the DataFrame
+columns_to_drop = [col for col in columns_to_drop if col in movies_df.columns]
+
+# Drop the unnecessary columns
+features = df.drop(columns=columns_to_drop).values
+
+# Calculate the cosine similarity matrix
 similarity_matrix = cosine_similarity(features, features)
 
-# Store movie titles for easy lookup
-movie_titles = ['title'].tolist()
-
-def get_recommendations(title, similarity_matrix, movie_titles, top_n=10):
-    # Find the index of the movie
-    try:
-        idx = movie_titles.index(title)
-    except ValueError:
-        return ["Movie not found in the dataset."]
-
-    # Get similarity scores for all movies
-    sim_scores = list(enumerate(similarity_matrix[idx]))
-
-    # Sort the movies based on similarity scores
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-
-    # Get the indices of the top_n most similar movies
-    top_indices = [i[0] for i in sim_scores[1:top_n+1]]
-
-    # Return the titles of the top_n most similar movies
-    return [movie_titles[i] for i in top_indices]
-
+# Integrate with Streamlit
+st.write("Cosine Similarity Matrix:")
+st.write(similarity_matrix)
 
