@@ -31,7 +31,7 @@ st.divider()
 st.write("DataFrame Head:")
 st.write(df.head())
 
-with st.expander("DataFrame Columns:")
+st.write("DataFrame Columns:")
 st.write(df.columns)
 with st.expander('Data'):
     st.write('**Raw data**')
