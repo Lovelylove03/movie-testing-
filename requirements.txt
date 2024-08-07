@@ -1,4 +1,4 @@
- streamlit 
- pandas 
- scikit-learn
-cosine
+streamlit
+pandas
+scikit-learn
+
