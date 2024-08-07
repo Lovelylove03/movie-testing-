@@ -112,4 +112,14 @@ similarity_matrix = cosine_similarity(X, X)
 # Integrate with Streamlit
 st.write("Cosine Similarity Matrix:")
 st.write(similarity_matrix)
+import matplotlib.pyplot as plt
+# Univariate Analysis: Pie charts for categorical variables
+st.write("Univariate Analysis: Pie Charts")
+for column in df.select_dtypes(include=['object']).columns:
+    if df[column].nunique() < 10:  # Limit to categorical columns with fewer unique values
+        fig, ax = plt.subplots()
+        df[column].value_counts().plot.pie(autopct='%1.1f%%', ax=ax)
+        ax.set_title(f'Pie Chart of {column}')
+        ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        st.pyplot(fig)
 
