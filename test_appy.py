@@ -23,7 +23,7 @@ st.markdown(
 link = "https://raw.githubusercontent.com/Lovelylove03/movie-testing-/main/df_ml%20-%20df_ml.csv"
 df = pd.read_csv(link)
 
-st.title('Système de recommandations de films pour cinema')
+st.title('**recommendation system for cinema movies**')
 st.divider()
 
 # Display DataFrame for debugging
@@ -39,7 +39,7 @@ with st.expander('Data'):
 col1, col2, col3 = st.columns(3)
 
 with st.sidebar:
-    st.header("Choisir un film")
+    st.header("select a film")
     
     time = st.radio('Années', ["All", "2020's", "2010's", "2000's", "90's", "80's", "70's", "60's", "50's", "40's", "30's", "20's"])
 
@@ -115,3 +115,44 @@ chart_data = pd.DataFrame(
     columns=["Action", "Animation", "Biography", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Adventure", "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western"]
 )
 st.area_chart(chart_data)
+
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+
+# Sidebar for histogram options
+st.sidebar.header("Histogram Options")
+
+# Sidebar options for year range selection
+min_year = int(df['startYear'].min())
+max_year = int(df['startYear'].max())
+year_range = st.sidebar.slider('Select year range', min_year, max_year, (min_year, max_year))
+
+# Filter the dataset based on the selected year range
+df_filtered = df[(df['startYear'] >= year_range[0]) & (df['startYear'] <= year_range[1])]
+
+# Check if 'startYear' is in the columns
+if 'startYear' in df.columns:
+    # Convert 'startYear' to numeric, forcing errors to NaN
+    df_filtered['startYear'] = pd.to_numeric(df_filtered['startYear'], errors='coerce')
+
+    # Drop rows with NaN values in 'startYear'
+    df_filtered = df_filtered.dropna(subset=['startYear'])
+
+    # Sidebar option for number of bins in the histogram
+    bins = st.sidebar.slider('Number of bins', 10, 100, 30)
+
+    # Plot the histogram
+    fig, ax = plt.subplots()
+    df_filtered['startYear'].plot(kind='hist', bins=bins, ax=ax, edgecolor='black')
+    ax.set_title('Histogram of Start Year')
+    ax.set_xlabel('Start Year')
+    ax.set_ylabel('Frequency')
+
+    # Display the plot in Streamlit
+    st.pyplot(fig)
+else:
+    st.write("The dataset does not contain a 'startYear' column.")
+
