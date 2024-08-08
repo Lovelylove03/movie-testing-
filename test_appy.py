@@ -112,6 +112,6 @@ for column in df.select_dtypes(include=['object']).columns:
 # Generate and display random chart data
 chart_data = pd.DataFrame(
     np.random.randn(21, 16),
-    columns=["Action", "Animation", "Biography", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Adventure", "Mystery", "Romance", "Sci-Fi", "Science Fiction", "Sport", "Thriller", "War", "Western"]
+    columns=["Action", "Animation", "Biography", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Adventure", "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western"]
 )
 st.area_chart(chart_data)
