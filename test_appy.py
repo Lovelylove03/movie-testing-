@@ -120,7 +120,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
+# Ensure the dataframe has been loaded correctly
+st.write(df.head())
 
 # Sidebar for histogram options
 st.sidebar.header("Histogram Options")
@@ -155,4 +156,3 @@ if 'startYear' in df.columns:
     st.pyplot(fig)
 else:
     st.write("The dataset does not contain a 'startYear' column.")
-
